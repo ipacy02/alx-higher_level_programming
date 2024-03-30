@@ -1,7 +1,10 @@
 #!/usr/bin/python3
-'''Module for BaseGeometry class.'''
+
+
+"""A module with a class that models geometric shapes."""
 
 
 class BaseGeometry:
-    '''A BaseGeometry class.'''
+    """A base class for geometry shapes."""
+
     pass

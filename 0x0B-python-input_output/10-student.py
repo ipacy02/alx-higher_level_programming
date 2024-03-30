@@ -1,32 +1,41 @@
 #!/usr/bin/python3
-"""Defines a class Student."""
+
+"""A module that models a Student object."""
 
 
 class Student:
-    """Represent a student."""
+    """Models a Student object."""
 
-    def __init__(self, first_name, last_name, age):
-        """Initialize a new Student.
+    def __init__(self, first_name: str, last_name: str, age: int) -> None:
+        """
+        Initializes / creates a new Student object.
 
         Args:
-            first_name (str): The first name of the student.
-            last_name (str): The last name of the student.
-            age (int): The age of the student.
+            first_name (str): The student's first name.
+            last_name (str): The student's last name.
+            age (int): The student's age.
         """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
-    def to_json(self, attrs=None):
-        """Get a dictionary representation of the Student.
-
-        If attrs is a list of strings, represents only those attributes
-        included in the list.
+    def to_json(self, attr=None) -> dict:
+        """
+        Returns the dictionary representation of the `Student` object.
 
         Args:
-            attrs (list): (Optional) The attributes to represent.
+            attr: A list of attribute names to retrieve.
+
+        Returns:
+            dict: The dictionary representation of the `Student` object.
         """
-        if (type(attrs) == list and
-                all(type(ele) == str for ele in attrs)):
-            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
+        if attr is not None and isinstance(attr, list):
+            return (
+                {
+                    key: value for key, value in self.__dict__.items()
+                    if key in attr
+                }
+            )
+
+        # no specific attributes were given, return everything
         return self.__dict__

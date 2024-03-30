@@ -1,8 +1,13 @@
 #!/usr/bin/python3
 
-"""Define a class Square."""
+"""
+Defines a blueprint for a Square as part of the OOP tasks
+"""
 
 
 class Square:
-    """Represent a square."""
+    """
+    A blueprint for working with squares
+    """
+
     pass

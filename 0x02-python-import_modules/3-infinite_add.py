@@ -1,16 +1,26 @@
 #!/usr/bin/python3
-import sys
 
-if __name__ != "__main__":
-    exit()
+from sys import argv
 
-argc = len(sys.argv) - 1
 
-i = 0
-result = 0
-for arg in sys.argv:
-    if i != 0:
-        result += int(arg)
-    else:
-        i += 1
-print("{:d}".format(result))
+def infinite_add() -> None:
+    """
+    Prints the result of the addition of all arguments
+    """
+    # handle when no numbers are given
+    if not argv[1:]:
+        print("0")
+        return
+
+    sum = 0
+    for operand in argv[1:]:
+        try:
+            sum += int(operand)
+        except ValueError:
+            print("Expected an integer!")
+            return
+    print(sum)
+
+
+if __name__ == "__main__":
+    infinite_add()

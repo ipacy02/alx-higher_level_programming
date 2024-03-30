@@ -1,21 +1,25 @@
 #!/usr/bin/python3
-import sys
 
-if __name__ != "__main__":
-    exit()
+from sys import argv
 
-argStr = "{:d} argument"
-argc = len(sys.argv) - 1
-if argc == 0:
-    argStr += 's.'
-elif argc == 1:
-    argStr += ':'
-else:
-    argStr += 's:'
-print(argStr.format(argc))
 
-i = 0
-for arg in sys.argv:
-    if i != 0:
-        print("{:d}: {:s}".format(i, arg))
-    i += 1
+def print_args() -> None:
+    """
+    Prints the number of command line arguments with
+    each argument on a new line
+    """
+    size = len(argv[1:])
+
+    print(f"{size} argument{'s' if size == 0 or size > 1 else ''}", end="")
+
+    if not argv[1:]:
+        print(".")
+        return
+
+    print(":")
+    for position, arg in enumerate(argv[1:], start=1):
+        print(f"{position}: {arg}")
+
+
+if __name__ == "__main__":
+    print_args()
